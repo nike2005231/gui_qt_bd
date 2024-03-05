@@ -24,7 +24,7 @@ class Ui_ErrorWindow(object):
 
     def retranslateUi(self, ErrorWindow):
         _translate = QtCore.QCoreApplication.translate
-        ErrorWindow.setWindowTitle(_translate("ErrorWindow", "MainWindow"))
+        ErrorWindow.setWindowTitle(_translate("ErrorWindow", "LogWindow"))
 
 
 if __name__ == "__main__":

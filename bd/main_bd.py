@@ -1,18 +1,18 @@
 import psycopg2 as pg
 from config import host, user, password, db_name
 import sys
-sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\client_table")
-import client
-sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\order_table")
-import order
-sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\product_table")
-import product
-sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\suppiler_table")
-import supplier
-sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\warehouse_table")
-import warehouse
-sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\select_table")
-import select
+# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\client_table")
+# import client
+# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\order_table")
+# import order
+# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\product_table")
+# import product
+# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\suppiler_table")
+# import supplier
+# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\warehouse_table")
+# import warehouse
+# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\select_table")
+# import select
 
 
 
@@ -66,19 +66,26 @@ import select
     #         """
     #         )
 
-
-def add_value_request_client():
+def add_value_request_client(line_edit, line_edit_2, line_edit_3, line_edit_4, line_edit_5):
     connection = pg.connect(host=host, dbname=db_name, user=user, password=password)
     
+    connection.autocommit = True
+
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM client")
+            cursor.execute(
+                f"insert into client(id_client, name, surname, adres, value_contact) values({line_edit.text()}, \'{line_edit_2.text()}\', \'{line_edit_3.text()}\', \'{line_edit_4.text()}\', \'{line_edit_5.text()}\')"
+            )
             rows = cursor.fetchall()
             
             for row in rows:
                 print(f"{row}")
     except (Exception, pg.DatabaseError) as error:
-        print(f"Ошибка при выполнении запроса: {error}")
+        if str(error) == "no results to fetch":
+            print("Запрос выполнен")
+        else:
+            print(error)
     finally:
         print("Соединение закрыто")
         connection.close()
+        
