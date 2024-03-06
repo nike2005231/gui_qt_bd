@@ -1,4 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\bd")
+import main_bd
 
 
 class Ui_OrderWindow(object):
@@ -31,9 +34,12 @@ class Ui_OrderWindow(object):
         self.lineEdit_3 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_3.setGeometry(QtCore.QRect(150, 150, 181, 31))
         self.lineEdit_3.setObjectName("lineEdit_3")
+
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(170, 340, 141, 41))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect(lambda: main_bd.add_value_request_order(self, self.lineEdit, self.lineEdit_2, self.lineEdit_3, self.lineEdit_4, self.lineEdit_5))
+
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
         self.label_9.setGeometry(QtCore.QRect(150, 250, 141, 21))
         font = QtGui.QFont()

@@ -1,4 +1,6 @@
-
+import sys
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\bd")
+import main_bd
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -23,9 +25,12 @@ class Ui_SupplierWindow(object):
         self.lineEdit_5 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_5.setGeometry(QtCore.QRect(120, 280, 181, 31))
         self.lineEdit_5.setObjectName("lineEdit_5")
+
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(140, 350, 141, 41))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect(lambda: main_bd.add_value_request_supplier(self, self.lineEdit, self.lineEdit_2, self.lineEdit_3, self.lineEdit_4, self.lineEdit_5))
+
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(120, 10, 31, 21))
         font = QtGui.QFont()

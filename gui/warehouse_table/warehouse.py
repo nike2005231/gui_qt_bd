@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import sys
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\bd")
+import main_bd
 
 class Ui_WarehouseWindow(object):
     def setupUi(self, WarehouseWindow):
@@ -41,9 +43,13 @@ class Ui_WarehouseWindow(object):
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(130, 60, 181, 31))
         self.lineEdit.setObjectName("lineEdit")
+
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(150, 300, 141, 41))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(lambda: main_bd.add_value_request_warehouse(self, self.lineEdit, self.lineEdit_2, self.lineEdit_3, self.lineEdit_4))
+
+
         self.lineEdit_2 = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit_2.setGeometry(QtCore.QRect(130, 120, 181, 31))
         self.lineEdit_2.setObjectName("lineEdit_2")

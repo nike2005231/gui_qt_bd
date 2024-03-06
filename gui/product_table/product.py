@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import sys
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\bd")
+import main_bd
 
 class Ui_ProductWindow(object):
     def setupUi(self, ProductWindow):
@@ -7,9 +9,13 @@ class Ui_ProductWindow(object):
         ProductWindow.resize(429, 412)
         self.centralwidget = QtWidgets.QWidget(ProductWindow)
         self.centralwidget.setObjectName("centralwidget")
+
         self.pushButton = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton.setGeometry(QtCore.QRect(140, 280, 141, 41))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(lambda: main_bd.add_value_request_product(self, self.lineEdit, self.lineEdit_2, self.lineEdit_3, self.lineEdit_4))
+
+
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(120, 40, 181, 31))
         self.lineEdit.setObjectName("lineEdit")
