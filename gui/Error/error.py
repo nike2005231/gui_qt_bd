@@ -1,6 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
+
 class Ui_ErrorWindow(object):
     def setupUi(self, ErrorWindow):
         ErrorWindow.setObjectName("ErrorWindow")

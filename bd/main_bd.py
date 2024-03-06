@@ -1,8 +1,10 @@
 import psycopg2 as pg
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QIcon
 from config import host, user, password, db_name
 import sys
-# sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\client_table")
-# import client
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\Error")
+import error
 # sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\order_table")
 # import order
 # sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\product_table")
@@ -65,8 +67,17 @@ import sys
     #         );
     #         """
     #         )
+def show_error(self, text, element_class, mode) -> str:
+    if mode == "set":
+        element_class.textBrowser.setText(f"{text}")
+    elif mode == "add":
+        element_class.textBrowser.append(f"{text}")
 
-def add_value_request_client(line_edit, line_edit_2, line_edit_3, line_edit_4, line_edit_5):
+
+def add_value_request_client(self, line_edit, line_edit_2, line_edit_3, line_edit_4, line_edit_5):
+    self.send_window = error.QtWidgets.QMainWindow()
+    ui = error.Ui_ErrorWindow()
+    ui.setupUi(self.send_window)
     connection = pg.connect(host=host, dbname=db_name, user=user, password=password)
     
     connection.autocommit = True
@@ -80,12 +91,13 @@ def add_value_request_client(line_edit, line_edit_2, line_edit_3, line_edit_4, l
             
             for row in rows:
                 print(f"{row}")
-    except (Exception, pg.DatabaseError) as error:
-        if str(error) == "no results to fetch":
-            print("Запрос выполнен")
+    except (Exception, pg.DatabaseError) as errors:
+        if str(errors) == "no results to fetch":
+            show_error(self, "Запрос выполнен", ui, "set")
         else:
-            print(error)
+            show_error(self, f"{errors}", ui, "set")
     finally:
-        print("Соединение закрыто")
+        self.send_window.show()
+        show_error(self, "\n***Соединение успешно закрыто***", ui, "add")
         connection.close()
-        
+       

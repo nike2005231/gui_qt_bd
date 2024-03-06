@@ -1,11 +1,12 @@
 import sys
 sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\bd")
 import main_bd
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\Error")
+import error
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_ClientWindow(object):
-
     def setupUi(self, ClientWindow):
         ClientWindow.setObjectName("ClientWindow")
         ClientWindow.resize(427, 444)
@@ -65,7 +66,7 @@ class Ui_ClientWindow(object):
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(150, 340, 141, 41))
         self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_2.clicked.connect(lambda: main_bd.add_value_request_client(self.lineEdit, self.lineEdit_2, self.lineEdit_3, self.lineEdit_4, self.lineEdit_5))
+        self.pushButton_2.clicked.connect(lambda: main_bd.add_value_request_client(self, self.lineEdit, self.lineEdit_2, self.lineEdit_3, self.lineEdit_4, self.lineEdit_5))
 
         ClientWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ClientWindow)
