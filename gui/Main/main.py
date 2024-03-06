@@ -14,7 +14,10 @@ sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\warehouse_table
 import warehouse
 sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\select_table")
 import select
-
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\requset_table")
+import request
+sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\bd")
+import main_bd
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,6 +30,11 @@ class Ui_MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(150, 250, 171, 41))
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.open_window)
+
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(150, 310, 171, 41))
+        self.pushButton_2.setObjectName("pushButton")
+        self.pushButton_2.clicked.connect(self.clear_table)
 
         self.listView = QtWidgets.QListView(self.centralwidget)
         self.listView.setGeometry(QtCore.QRect(110, 40, 256, 192))
@@ -43,16 +51,27 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        iterable = ["Client", "Order", "Product", "Warehouse", "Supplier"]
+        iterable = ["Client", "Order", "Product", "Warehouse", "Supplier", "Request"]
         model = QtCore.QStringListModel()
         model.setStringList(iterable)
         self.listView.setModel(model)
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
     
+
+    def clear_table(self):
+        if str(self.listView.currentIndex().data()) == "Client":
+            main_bd.clear_table_main_bd(self, "client")
+        elif str(self.listView.currentIndex().data()) == "Order":
+            main_bd.clear_table_main_bd(self, "orders")
+        elif str(self.listView.currentIndex().data()) == "Product":
+            main_bd.clear_table_main_bd(self, "product")
+        elif str(self.listView.currentIndex().data()) == "Warehouse":
+            main_bd.clear_table_main_bd(self, "warehouse")
+        elif str(self.listView.currentIndex().data()) == "Supplier":
+            main_bd.clear_table_main_bd(self, "supplier")
+
     def open_window(self):
-        print(self.listView.currentIndex().data())
-        print(client.__dict__)
         def check(x):
             match x:
                 case "Client":
@@ -78,6 +97,10 @@ class Ui_MainWindow(object):
                 case "Supplier":
                     self.send_window = supplier.QtWidgets.QMainWindow()
                     ui = supplier.Ui_SupplierWindow()
+                
+                case "Request":
+                    self.send_window = request.QtWidgets.QMainWindow()
+                    ui = request.Ui_MainWindow()
 
             ui.setupUi(self.send_window)
             self.send_window.show()
@@ -89,6 +112,7 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Перейти"))
+        self.pushButton_2.setText(_translate("MainWindow", "Очистить таблицу"))
         
 
 if __name__ == "__main__":
