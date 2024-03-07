@@ -5,12 +5,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_ErrorWindow(object):
     def setupUi(self, ErrorWindow):
         ErrorWindow.setObjectName("ErrorWindow")
-        ErrorWindow.resize(321, 265)
+        ErrorWindow.resize(600, 500)
         self.centralwidget = QtWidgets.QWidget(ErrorWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser.setGeometry(QtCore.QRect(30, 10, 256, 192))
+        self.textBrowser.setGeometry(QtCore.QRect(30, 30, 540, 430))
         self.textBrowser.setObjectName("textBrowser")
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.textBrowser.setFont(font)
         ErrorWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(ErrorWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 321, 26))

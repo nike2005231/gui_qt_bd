@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QIcon
 import sys
 import os
+import cv2
 sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\client_table")
 import client
 sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\order_table")
@@ -36,6 +37,11 @@ class Ui_MainWindow(object):
         self.pushButton_2.setObjectName("pushButton")
         self.pushButton_2.clicked.connect(self.clear_table)
 
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3.setGeometry(QtCore.QRect(330, 310, 135, 41))
+        self.pushButton_3.setObjectName("pushButton")
+        self.pushButton_3.clicked.connect(self.image_open)
+
         self.listView = QtWidgets.QListView(self.centralwidget)
         self.listView.setGeometry(QtCore.QRect(110, 40, 256, 192))
         self.listView.setObjectName("listView")
@@ -58,6 +64,10 @@ class Ui_MainWindow(object):
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
     
+    def image_open(self):
+        img = cv2.imread(r'C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\erd\image_erd.jpg')
+        cv2.imshow("ERD", img)
+        cv2.waitKey(0)
 
     def clear_table(self):
         if str(self.listView.currentIndex().data()) == "Client":
@@ -113,6 +123,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.pushButton.setText(_translate("MainWindow", "Перейти"))
         self.pushButton_2.setText(_translate("MainWindow", "Очистить таблицу"))
+        self.pushButton_3.setText(_translate("MainWindow", "Таблица ERD Info"))
         
 
 if __name__ == "__main__":

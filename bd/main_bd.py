@@ -8,57 +8,6 @@ import request
 sys.path.append(r"C:\Users\Nike\Desktop\Scripts\Python\pgsql\gui\Error")
 import error
 
-
-
-
-    # with connection.cursor() as cursor:
-    #     cursor.execute(
-    #         "create database Product_shop;"
-    #         ) 
-    
-    # with connection.cursor() as cursor:
-    #     cursor.execute(
-    #         """
-    #         create table Product(
-    #         id_product int primary key,
-    #         name_product varchar(50) not null,
-    #         price_product int not null,
-    #         description_product text not null
-    #         );
-
-    #         create table Supplier(
-    #         id_supplier int primary key,
-    #         id_product SERIAL REFERENCES Product(id_product),
-    #         name_supplier varchar(50) not null,
-    #         adres varchar(50) not null,
-    #         information text not null
-    #         );
-
-    #         create table Warehouse(
-    #         id_Warehouse int primary key,
-    #         id_product SERIAL REFERENCES Product(id_product),
-    #         total int not null,
-    #         delivery_date_number varchar(50) not null
-    #         );
-
-    #         create table Client(
-    #         id_client int primary key,
-    #         name varchar(50) not null,
-    #         surname varchar(50) not null,
-    #         adres varchar(50) not null,
-    #         value_contact text not null
-    #         );
-
-    #         create table orders(
-    #         id_orders int primary key,
-    #         id_client SERIAL REFERENCES Client(id_client),
-    #         id_product SERIAL REFERENCES Product(id_product),
-    #         value int not null,
-    #         date varchar(50)
-    #         );
-    #         """
-    #         )
-
 def show_error(self, text, element_class, mode) -> str:
     if mode == "set":
         element_class.textBrowser.setText(f"{text}")
@@ -126,7 +75,7 @@ def request_window(self):
 
     
 
-#Warehouse
+#Supplier
 def add_value_request_supplier(self, line_edit, line_edit_2, line_edit_3, line_edit_4, line_edit_5):
     self.send_window = error.QtWidgets.QMainWindow()
     ui = error.Ui_ErrorWindow()
